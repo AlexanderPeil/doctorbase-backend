@@ -1,6 +1,21 @@
 from django.contrib import admin
-from doctorbase_backend.models import Patient, Doctor, Appointment
+from .models import Doctor, Patient, Appointment
 
-admin.site.register(Patient)
-admin.site.register(Doctor)
-admin.site.register(Appointment)
+class AppointmentInline(admin.TabularInline):
+    model = Appointment
+    extra = 1
+
+class PatientAdmin(admin.ModelAdmin):
+    list_display = ('firstname', 'lastname', 'b_date')
+    inlines = [AppointmentInline]
+
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = ('title', 'speciality')
+
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date', 'doctor', 'patient')
+    list_filter = ('doctor', 'patient', 'date')
+
+admin.site.register(Doctor, DoctorAdmin)
+admin.site.register(Patient, PatientAdmin)
+admin.site.register(Appointment, AppointmentAdmin)
