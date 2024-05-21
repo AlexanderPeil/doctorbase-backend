@@ -4,7 +4,6 @@ from datetime import date
 
 
 class Doctor(models.Model):
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=100, default='Max')
     lastname = models.CharField(max_length=100, default='Mustermann')
     speciality = models.CharField(max_length=100)
@@ -15,7 +14,6 @@ class Doctor(models.Model):
 
 
 class Patient(models.Model):
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     b_date = models.DateField(default=date.today)

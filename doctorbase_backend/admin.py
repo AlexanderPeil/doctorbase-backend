@@ -10,7 +10,7 @@ class PatientAdmin(admin.ModelAdmin):
     inlines = [AppointmentInline]
 
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = ('title', 'speciality')
+    list_display = ('title', 'firstname', 'lastname', 'speciality')
 
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'doctor', 'patient')

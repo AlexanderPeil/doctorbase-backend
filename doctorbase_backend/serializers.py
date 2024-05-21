@@ -7,7 +7,7 @@ class DoctorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AppointmentSerializer(serializers.ModelSerializer):
-    doctor = DoctorSerializer()
+    doctor = serializers.PrimaryKeyRelatedField(queryset=Doctor.objects.all())
     patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())
 
     class Meta:
@@ -20,3 +20,7 @@ class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
         fields = '__all__'
+        extra_kwargs = {
+                'b_date': {'input_formats': ['%Y-%m-%d', '%d-%m-%Y']}
+        }
+
